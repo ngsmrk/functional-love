@@ -6,9 +6,9 @@ class RecursiveMultiplier extends Multiplier {
   override def multiply(x: Int, y: Int): Int = {
 
     @tailrec
-    def iter(x: Int, y: Int, accumulator: Int): Int = {
+    def iter(increment: Int, y: Int, accumulator: Int): Int = {
       if (y == 0) accumulator
-      else iter(x, y-1, accumulator + x)
+      else iter(increment, y-1, accumulator + increment)
     }
 
     iter(x, y, 0)

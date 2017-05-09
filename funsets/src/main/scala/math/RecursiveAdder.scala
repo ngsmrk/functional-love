@@ -12,11 +12,11 @@ class RecursiveAdder extends Adder {
   override def add(x: Int, y: Int): Int = {
 
     @tailrec
-    def iterAdd(y:Int, acc: Int): Int = {
+    def iterAdd(increment: Int, y:Int, acc: Int): Int = {
       if (y==0) acc
-      else iterAdd(y-1, acc+1)
+      else iterAdd(increment, y-1, acc+1)
     }
 
-    iterAdd(y, x)
+    iterAdd(1, y, x)
   }
 }
