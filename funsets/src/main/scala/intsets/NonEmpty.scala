@@ -1,6 +1,6 @@
 package intsets
 
-class NonEmpty(elem: Int, left: IntSet, right: IntSet) extends IntSet {
+class NonEmpty(val elem: Int, val left: IntSet, val right: IntSet) extends IntSet {
 
   def contains(x: Int): Boolean = {
     if (x < elem) left contains x

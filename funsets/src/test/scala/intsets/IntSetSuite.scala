@@ -44,6 +44,7 @@ class IntSetSuite extends FunSuite with MustMatchers {
   test("Union is implemented for NonEmpty") {
     val t2 = new NonEmpty(4, Empty, Empty)
     val union = t2 union t1
+
     assert(union.toString === "{ left . elem = 3 right = { left . elem = 4 right = .}}")
   }
 }
