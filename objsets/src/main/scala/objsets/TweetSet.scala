@@ -144,9 +144,18 @@ class Empty extends TweetSet {
 class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = {
-    val leftright = left.filterAcc(p, right.filterAcc(p, acc))
-    if (p(elem)) leftright.incl(elem)
-    else leftright
+
+    val left_tree = left.filterAcc(p, acc)
+    println(elem.user + " Left " + left_tree)
+
+    val right_tree = right.filterAcc(p, acc)
+    println(elem.user + " Right " + right_tree)
+
+    val all = left_tree union right_tree
+    println(elem.user + " Union " + all)
+
+    if (p(elem)) all.incl(elem)
+    else all
   }
 
   /**
