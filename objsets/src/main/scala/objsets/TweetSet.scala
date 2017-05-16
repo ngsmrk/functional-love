@@ -5,8 +5,7 @@ package objsets
   */
 class Tweet(val user: String, val text: String, val retweets: Int) {
   override def toString: String =
-    "User: " + user + "\n" +
-      "Text: " + text + " [" + retweets + "]"
+    "User: " + user + " Text: " + text + " [" + retweets + "]"
 }
 
 /**
@@ -31,6 +30,8 @@ class Tweet(val user: String, val text: String, val retweets: Int) {
   * [1] http://en.wikipedia.org/wiki/Binary_search_tree
   */
 abstract class TweetSet {
+
+  def findMin: Tweet
 
   /**
     * This method takes a predicate and returns a subset of all the elements
@@ -114,6 +115,9 @@ abstract class TweetSet {
 }
 
 class Empty extends TweetSet {
+
+  def findMin: Tweet = null
+
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = {
     acc
   }
@@ -142,6 +146,21 @@ class Empty extends TweetSet {
 }
 
 class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
+
+  def findMin: Tweet = {
+    val left_min = left.findMin
+    val right_min = right.findMin
+
+    println("Find min " + elem)
+    println("Left min " + left_min)
+    println("Right min " + right_min)
+
+    if (left_min != null) {
+      if (left_min.retweets < elem.retweets) left_min else elem
+    } else if (right_min != null) {
+      if (right_min.retweets < elem.retweets) right_min else elem
+    } else elem
+  }
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = {
 
