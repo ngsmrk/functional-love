@@ -67,7 +67,19 @@ abstract class TweetSet {
     * Question: Should we implement this method here, or should it remain abstract
     * and be implemented in the subclasses?
     */
-  def mostRetweeted: Tweet = ???
+  def mostRetweeted: Tweet = {
+    var newSet = this
+
+    // iterative version with mutable state
+    var mostRetweeted: Tweet = null
+    while (!newSet.isEmpty) {
+      println("Newset " + newSet)
+      mostRetweeted = newSet.findMin
+      newSet = newSet.remove(mostRetweeted)
+    }
+
+    mostRetweeted
+  }
 
   /**
     * Returns a list containing all tweets of this set, sorted by retweet count

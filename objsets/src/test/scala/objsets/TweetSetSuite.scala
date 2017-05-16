@@ -89,8 +89,14 @@ class TweetSetSuite extends FunSuite {
 
   test("findMin: set5") {
     new TestSets {
-      println(set5)
       assert(set5.findMin.user === "c")
+    }
+  }
+
+  test("mostRetweeted: set5") {
+    new TestSets {
+      println(set5)
+      assert(set5.mostRetweeted.user === "b")
     }
   }
 
