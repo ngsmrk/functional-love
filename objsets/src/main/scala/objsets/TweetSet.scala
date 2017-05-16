@@ -68,9 +68,8 @@ abstract class TweetSet {
     * and be implemented in the subclasses?
     */
   def mostRetweeted: Tweet = {
-    var newSet = this
-
     // iterative version with mutable state
+    var newSet = this
     var mostRetweeted: Tweet = null
     while (!newSet.isEmpty) {
       println("Newset " + newSet)
