@@ -1,7 +1,13 @@
+package tree
+
 abstract class TreeElement {
   def isEmpty: Boolean
 
   def add(other: Int): TreeElement
+
+  def findMin: Int
+
+  def findMax: Int
 }
 
 object Empty extends TreeElement {
@@ -10,6 +16,9 @@ object Empty extends TreeElement {
   override def toString = "."
 
   def add(other: Int) = new Element(Empty, other, Empty)
+
+  def findMin = throw new Error("Empty.min")
+  def findMax = throw new Error("Empty.max")
 }
 
 class Element(val left: TreeElement, val value: Int, val right: TreeElement) extends TreeElement {
@@ -22,7 +31,18 @@ class Element(val left: TreeElement, val value: Int, val right: TreeElement) ext
     else if (other > value) new Element(left, value, right.add(other))
     else this
   }
+
+  def findMin = {
+    if (left.isEmpty) this.value else left.findMin
+  }
+
+  def findMax = {
+    if (right.isEmpty) this.value else right.findMax
+  }
 }
 
-println(Empty)
-println(new Element(Empty, 1, Empty).add(2))
+object Element {
+  def apply(x: Int): TreeElement = {
+    new Element(Empty, x, Empty)
+  }
+}
