@@ -59,8 +59,4 @@ class IdealizedSuite extends FunSuite {
     assert(Zero === Zero)
     assert(Zero != new Succ(Zero))
   }
-
-  test("Succ =") {
-    assert(new Succ(Zero) === new Succ(Zero))
-  }
 }
