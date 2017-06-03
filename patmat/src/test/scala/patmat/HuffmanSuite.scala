@@ -36,11 +36,40 @@ class HuffmanSuite extends FunSuite {
     }
   }
 
+  test("show single leaf tree") {
+    val str = stringify(Leaf('a', 3))
+    assert(str === "a:3")
+  }
+
+  test("show a larger tree") {
+    new TestTrees {
+      assert(stringify(t1) === "a:2 b:3")
+    }
+  }
+
+  test("show an even larger tree") {
+    new TestTrees {
+      assert(stringify(t2) === "a:2 b:3 d:4")
+    }
+  }
 
   test("string2chars(\"hello, world\")") {
     assert(string2Chars("hello, world") === List('h', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd'))
   }
 
+  test("make simple code tree") {
+    val codeTree = makeCodeTree(Leaf('x', 1), Leaf('e', 1))
+    assert(chars(codeTree) === List('x', 'e'))
+  }
+
+  test("make more complex code tree") {
+    val sampleTree = makeCodeTree(
+      makeCodeTree(Leaf('x', 1), Leaf('e', 1)),
+      Leaf('t', 2)
+    )
+    println(stringify(sampleTree))
+    assert(chars(sampleTree) === List('x', 'e', 't'))
+  }
 
   test("makeOrderedLeafList for some frequency table") {
     assert(makeOrderedLeafList(List(('t', 2), ('e', 1), ('x', 3))) === List(Leaf('e',1), Leaf('t',2), Leaf('x',3)))
