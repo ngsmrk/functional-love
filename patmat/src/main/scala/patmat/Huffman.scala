@@ -86,10 +86,8 @@ object Huffman {
       if (chars.isEmpty) acc
       else {
         val c = chars.head
-        println(c)
         val new_count = acc.getOrElse(c, 0) + 1
         val new_acc = acc + ((c, new_count))
-        println(new_acc)
         incr(new_acc, chars.tail)
       }
     }
