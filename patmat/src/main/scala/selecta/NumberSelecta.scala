@@ -21,4 +21,14 @@ object NumberSelecta {
 
     packed map (ys => (ys.head, ys.length))
   }
+
+  def sum(xs: List[Int]): Int = xs match {
+    case Nil => 0
+    case head :: tail => head + sum(tail)
+  }
+
+  def product(xs: List[Int]): Int = xs match {
+    case Nil => 1
+    case head :: tail => head * product(tail)
+  }
 }

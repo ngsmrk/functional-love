@@ -33,4 +33,14 @@ class SelectaSuite extends FunSuite {
     val expected = List(("a", 3), ("b", 1), ("c", 2), ("a", 1))
     assert(NumberSelecta.encode(input) === expected)
   }
+
+  test("sum") {
+    val nums = List(5, 4, 3, -2)
+    assert(NumberSelecta.sum(nums) === 10)
+  }
+
+  test("product") {
+    val nums = List(5, 4, -3)
+    assert(NumberSelecta.product(nums) === -60)
+  }
 }
