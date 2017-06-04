@@ -27,6 +27,17 @@ object NumberSelecta {
     case head :: tail => head + sum(tail)
   }
 
+  def sumWithReduce(xs: List[Int]): Int = (0 :: xs) reduceLeft((x, y) => x + y)
+  def productWithReduce(xs: List[Int]): Int = (1 :: xs) reduceLeft((x, y) => x * y)
+
+  def sumWithFold(xs: List[Int]): Int = {
+    (xs foldLeft 0) ((x, y) => x + y)
+  }
+
+  def productWithFold(xs: List[Int]): Int = {
+    (xs foldLeft 1) ((x, y) => x * y)
+  }
+
   def product(xs: List[Int]): Int = xs match {
     case Nil => 1
     case head :: tail => head * product(tail)
