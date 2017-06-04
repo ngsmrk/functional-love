@@ -21,4 +21,16 @@ class SelectaSuite extends FunSuite {
     val results = Sorta.msort(nums)((x: Int, y: Int) => x < y)
     assert(results === List(-9,0,1,2,5))
   }
+
+  test("pack") {
+    val input = List("a", "a", "a", "b", "c", "c", "a")
+    val expected = List(List("a", "a", "a"), List("b"), List("c", "c"), List("a"))
+    assert(NumberSelecta.pack(input) === expected)
+  }
+
+  test("encode") {
+    val input = List("a", "a", "a", "b", "c", "c", "a")
+    val expected = List(("a", 3), ("b", 1), ("c", 2), ("a", 1))
+    assert(NumberSelecta.encode(input) === expected)
+  }
 }

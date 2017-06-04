@@ -7,4 +7,18 @@ object NumberSelecta {
       if (lt(xs_head)) xs_head :: select(xs_tail)(lt) else select(xs_tail)(lt)
     }
   }
+
+  def pack[T](xs: List[T]): List[List[T]] = xs match {
+    case Nil => Nil
+    case head :: tail => {
+      val (first, rest) = xs span (elem => elem == head)
+      first :: pack(rest)
+    }
+  }
+
+  def encode[T](xs: List[T]): List[(T, Int)] = {
+    val packed = pack(xs)
+
+    packed map (ys => (ys.head, ys.length))
+  }
 }
