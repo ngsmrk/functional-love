@@ -149,5 +149,21 @@ class CollectionsSuite extends FunSuite {
       val result = List(2, 4).foreach((x: Int) => println(x * x)) // side effects are discarded (returns Unit)
       assert(() === result)
     }
+
+    test("reduceLeft") {
+      assert(3 === List(1, 2).reduceLeft((acc: Int, x: Int) => {
+        acc + x
+      })) // 0 + 1 + 2 - equivalent to .sum
+
+      assert("abc" === List('a', 'b', 'c').reduceLeft((b:Any, c:Char) => { b + c.toString } ))
+    }
+
+    test("reduceRight") {
+      assert(3 === List(1, 2).reduceRight((acc: Int, x: Int) => {
+        acc + x
+      })) // 0 + 2 + 1 - equivalent to .sum
+
+      assert("cba" === List('a', 'b', 'c').reduceRight((c:Char, b:Any) => { b + c.toString } ))
+    }
   }
 }
