@@ -129,6 +129,14 @@ class CollectionsSuite extends FunSuite {
       assert("abc" === List('a', 'b', 'c').foldLeft("")((acc: String, x: Char) => {
         acc + x
       }))
+
+      // fold left with Map
+      val result = List('a', 'b', 'c').foldLeft(Map[Char, Int]())( (acc: Map[Char, Int], elem: Char) => { acc.updated(elem, 1) }  )
+      assert(result === Map(('a', 1), ('b', 1), ('c', 1)))
+
+      // fold left with List of Pairs and Map
+      val result_2 = List(('a', 1), ('b', 1), ('c', 1)).foldLeft(Map[Char, Int]()) { case (accumulator, (character, weighting)) => { accumulator updated(character, weighting) } }
+      assert(result === Map(('a', 1), ('b', 1), ('c', 1)))
     }
 
     test("foldRight") {
